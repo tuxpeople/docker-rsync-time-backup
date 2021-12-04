@@ -16,6 +16,7 @@ fi
 
 whoami
 
+RSYNC_BIN="/usr/local/bin/rsync_tmbackup.sh"
 
 #########################
 # CONSTRUCT SSH COMMAND #
@@ -66,7 +67,7 @@ construct_ssh_command
 ###########
 # EXECUTE #
 ###########
-RSYNC_CMD='rsync ${RSYNC_OPTIONS:-} ${SSH_COMMAND:+-e "$SSH_COMMAND"} "$RSYNC_SOURCE" "$RSYNC_TARGET"'
+RSYNC_CMD='${RSYNC_BIN} ${RSYNC_OPTIONS:-} ${SSH_COMMAND:+-e "$SSH_COMMAND"} "$RSYNC_SOURCE" "$RSYNC_TARGET"'
 if [ "$#" == "0" ]; then
     echo "$RSYNC_CMD"
     eval "exec $RSYNC_CMD"
